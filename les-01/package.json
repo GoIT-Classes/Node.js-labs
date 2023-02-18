@@ -1,0 +1,15 @@
+{
+  "name": "les-01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "cross-env PORT=5000 NODE_ENV=development volodymyr=coffee ira=Tiramisù node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}
