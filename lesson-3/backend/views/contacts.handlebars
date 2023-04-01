@@ -1,0 +1,29 @@
+<h1>Contact Page</h1>
+<h3>{{msg}}</h3>
+<h3>{{user}}</h3>
+<ul>
+    <li>
+        <a href="/about">About</a>
+    </li>
+    <li>
+        <a href="/">Home</a>
+    </li>
+</ul>
+
+<form method="post" action="send">
+    <div class="row">
+        <div class="six columns">
+            <label for="userName">Your name</label>
+            <input class="u-full-width" type="email" placeholder="username" name="userName" id="userName">
+        </div>
+        <div class="six columns">
+            <label for="exampleEmailInput">Your email</label>
+            <input class="u-full-width" type="email" placeholder="test@mailbox.com" name="userEmail" id="exampleEmailInput">
+        </div>
+   
+    </div>
+    <label for="exampleMessage">Message</label>
+    <textarea class="u-full-width" placeholder="Hi Dave …" name="userMessage" id="exampleMessage"></textarea>
+ 
+    <input class="button-primary" type="submit" value="Submit">
+</form>

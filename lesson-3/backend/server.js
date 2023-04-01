@@ -4,6 +4,7 @@ const path = require('path');
 require('colors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { engine } = require('express-handlebars');
 
 const asyncHandler = require('express-async-handler');
 
@@ -16,6 +17,13 @@ const configPath = path.join(__dirname, '..', 'config', '.env');
 dotenv.config({ path: configPath });
 
 const app = express();
+
+const sendEmail = require('./services/sendEmail');
+
+// set template engine
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', 'backend/views');
 
 // console.log(process.env.andrew);
 // console.log(process.env.vova);
@@ -155,6 +163,35 @@ app.get(
     });
   })
 );
+
+app.get('/', (req, res) => {
+  res.render('home');
+});
+
+app.get('/about', (req, res) => {
+  res.render('about');
+});
+
+app.get('/contact', (req, res) => {
+  // res.render('contact', { msg: 'Contact sent success!', user: 'Alla' });
+  res.render('contact');
+});
+
+app.post('/send', async (req, res) => {
+  try {
+    // res.send(req.body);
+    res.render('send', {
+      msg: 'Contact sent success!',
+      user: req.body.user.userName,
+      email: req.body.user.userEmail,
+    });
+    await sendEmail(req.body);
+  } catch (error) {
+    res.status(400).json({
+      message: error.message,
+    });
+  }
+});
 
 app.use('*', notFound);
 app.use(errorHandler);
